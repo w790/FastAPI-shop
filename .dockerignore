@@ -1,0 +1,17 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+.env.local
+.DS_Store
+
+# Frontend misc in root
+frontend/node_modules/
+frontend/dist/
+frontend/.env
