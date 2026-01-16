@@ -5,10 +5,10 @@ from .config import settings
 
 engine = create_engine(
     settings.database_url,
-    connect_args = {"cheak_same_thread" : False}
+    connect_args = {"check_same_thread" : False}
 )
 
-SessionLocal = sessionmaker(auticommit=False, autoflush=False,bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False,bind=engine)
 Base = declarative_base()
 
 def get_db():
