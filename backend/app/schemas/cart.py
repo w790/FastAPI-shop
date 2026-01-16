@@ -27,3 +27,4 @@ class CartResponse(BaseModel):
     items: list[CartItem] = Field(..., description="List of items in the cart")
     total: float = Field(..., description="Total cart price")
     items_count: int = Field(..., description="Total number of items in cart")
+    cart: Dict[int, int] = Field(..., description="Current state of cart (product_id: quantity)")

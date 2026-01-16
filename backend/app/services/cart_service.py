@@ -32,7 +32,7 @@ class CartService:
     
     def get_cart_details(self,cart_data: Dict[int,int]) -> CartResponse:
         if not cart_data:
-            return CartResponse(items=[],total=0.0,items_count=0)
+            return CartResponse(items=[], total=0.0, items_count=0, cart={})
         product_ids = list(cart_data.keys())
         products = self.product_repository.get_multiple_by_ids(product_ids)
         products_dict = {product.id: product for product in products}
@@ -54,4 +54,4 @@ class CartService:
                 cart_items.append(cart_item)
                 total_price += subtotal
                 total_items += quantity
-        return CartResponse(items=cart_items, total=total_price, items_count=total_items)
+        return CartResponse(items=cart_items, total=total_price, items_count=total_items, cart=cart_data)
