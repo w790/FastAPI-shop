@@ -4,6 +4,8 @@ from typing import List
 from ..database import get_db
 from ..services.cart_service import CartService
 from ..schemas.cart import CartResponse, CartItemCreate, CartItemUpdate, GetCartRequest
+from pydantic import BaseModel
+from typing import Dict
 
 router = APIRouter(
     prefix="/api/cart",
