@@ -204,6 +204,12 @@ kill_port_80() {
 
     if lsof -Pi :80 -sTCP:LISTEN -t >/dev/null 2>&1; then
         print_warning "Обнаружены процессы на порту 80"
+        
+        # Попытка остановить системные сервисы
+        print_info "Останавливаем системные сервисы (nginx, apache2)..."
+        systemctl stop nginx >/dev/null 2>&1 || true
+        systemctl stop apache2 >/dev/null 2>&1 || true
+        
         print_info "Останавливаем процессы..."
 
         PIDS=$(lsof -Pi :80 -sTCP:LISTEN -t)

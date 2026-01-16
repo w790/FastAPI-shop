@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings
+from pydantic import field_validator
 
 class Settings(BaseSettings):
     app_name: str = "FastAPI Shop"
@@ -12,6 +13,13 @@ class Settings(BaseSettings):
     ]
     static_dir: str = "static"
     images_dir: str = "static/images"
+
+    @field_validator("cors_origins", mode="before")
+    @classmethod
+    def parse_cors_origins(cls, v):
+        if isinstance(v, str) and not v.strip().startswith("["):
+            return [i.strip() for i in v.split(",")]
+        return v
 
     class Config:
         env_file = ".env"
